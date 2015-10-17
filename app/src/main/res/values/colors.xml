@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="brown" type="color">#ffb67163</item>
+    <item name="black" type="color">#ff000000</item>
+    <item name="white" type="color">#ffffffff</item>
+    <item name="light_grey" type="color">#ffeeeeee</item>
+    <item name="red" type="color"></item>
+    <item name="orange" type="color">#ffffcc66</item>
+    <item name="button_normal_blue" type="color">#ff99ccff</item>
+    <item name="button_pressed_blue" type="color">#ff6699ff</item>
+</resources>

@@ -1,0 +1,11 @@
+.idea/
+Game2048.iml
+app/build/
+build/
+*.class
+*.dex
+*.apk
+*.ap_
+app/gen/
+.gradle/
+local.properties
