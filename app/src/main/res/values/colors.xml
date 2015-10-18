@@ -4,7 +4,22 @@
     <item name="black" type="color">#ff000000</item>
     <item name="white" type="color">#ffffffff</item>
     <item name="light_grey" type="color">#ffeeeeee</item>
-    <item name="red" type="color"></item>
+    <item name="background_deep_grey" type="color">#ff999999</item>
+
+    <!-- 游戏方块颜色 -->
+    <item name="deep_grey" type="color">#ffcccccc</item>
+    <item name="light_yellow" type="color">#ffffffe0</item>
+    <item name="deep_yellow" type="color">#ffffec8b</item>
+    <item name="light_orange" type="color">#ffffc125</item>
+    <item name="deep_orange" type="color">#ffff8c00</item>
+    <item name="light_red" type="color">#ffff7256</item>
+    <item name="deep_red" type="color">#ffff3030</item>
+    <item name="light_blue" type="color">#ffb2dfee</item>
+    <item name="deep_blue" type="color">#ff6495ed</item>
+    <item name="light_purple" type="color">#ffdda0dd</item>
+    <item name="deep_purple" type="color">#ff9370d8</item>
+    <item name="deep_green" type="color">#ff00cc99</item>
+
     <item name="orange" type="color">#ffffcc66</item>
     <item name="button_normal_blue" type="color">#ff99ccff</item>
     <item name="button_pressed_blue" type="color">#ff6699ff</item>

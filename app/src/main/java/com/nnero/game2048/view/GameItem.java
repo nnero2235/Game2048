@@ -1,34 +1,37 @@
 package com.nnero.game2048.view;
 
 import android.content.Context;
-import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import com.nnero.game2048.R;
+import com.nnero.game2048.util.LogUtil;
 
 /**
  * Author:NNERO
  * <p/>
  * TIME: 15/10/17 下午7:48
  * <p/>
- * DESCRIPTION:
+ * DESCRIPTION:小方块 view
  */
 public class GameItem extends FrameLayout {
 
-    public static final int COLOR_GREY = 0xeeeeee;
-    public static final int COLOR_WHITE = 0xffffff;
-    public static final int COLOR_LIGHT_YELLOW = 0xffffe0;
-    public static final int COLOR_DEEP_YELLOW = 0xffec8b;
-    public static final int COLOR_LIGHT_ORANGE = 0xffc125;
-    public static final int COLOR_DEEP_ORANGE = 0xff8c00;
-    public static final int COLOR_LIGHT_RED = 0xff7256;
-    public static final int COLOR_DEEP_RED = 0xff3030;
-    public static final int COLOR_LIGHT_BLUE = 0xb2dfee;
-    public static final int COLOR_DEEP_BLUE = 0x6495ed;
-    public static final int COLOR_LIGHT_PURPLE = 0xdda0dd;
-    public static final int COLOR_DEEP_PURPLE = 0x9370d8;
-    public static final int COLOR_DEEP_GREEN = 0x00cc99;
+    public static final int COLOR_GREY = 0xffbbbbbb;
+    public static final int COLOR_DEEP_GREY = 0xff999999;
+    public static final int COLOR_WHITE = 0xffffffff;
+    public static final int COLOR_LIGHT_YELLOW = 0xffffffe0;
+    public static final int COLOR_DEEP_YELLOW = 0xffffec8b;
+    public static final int COLOR_LIGHT_ORANGE = 0xffffc125;
+    public static final int COLOR_DEEP_ORANGE = 0xffff8c00;
+    public static final int COLOR_LIGHT_RED = 0xffff7256;
+    public static final int COLOR_DEEP_RED = 0xffff3030;
+    public static final int COLOR_LIGHT_BLUE = 0xffb2dfee;
+    public static final int COLOR_DEEP_BLUE = 0xff6495ed;
+    public static final int COLOR_LIGHT_PURPLE = 0xffdda0dd;
+    public static final int COLOR_DEEP_PURPLE = 0xff9370d8;
+    public static final int COLOR_DEEP_GREEN = 0xff00cc99;
 
-    public static final int COLOR_BLACK = 0x000000;
+    public static final int COLOR_BLACK = 0xff000000;
 
     private TextView mNumberView;
     private int mNumber;
@@ -36,65 +39,74 @@ public class GameItem extends FrameLayout {
     public GameItem(Context context,int number) {
         super(context);
         mNumber = number;
+        init();
+    }
+
+    private void init(){
+        initItem();
+        initLayout();
+    }
+
+    private void initItem(){
+        mNumberView = new TextView(getContext());
+        mNumberView.setTextColor(COLOR_BLACK);
+        mNumberView.setTextSize(20);
+        mNumberView.setText(mNumber == 0 ? "" : mNumber + "");
+        mNumberView.setGravity(Gravity.CENTER);
         setBackground(mNumber);
     }
 
-    public GameItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public GameItem(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
-
-    private void initItem(Context context){
-        mNumberView = new TextView(context);
-        mNumberView.setTextColor(COLOR_BLACK);
-        mNumberView.setTextSize(16);
-
+    private void initLayout(){
+        FrameLayout.LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        params.setMargins(10, 10, 10, 10); //方格之间有间距
+        addView(mNumberView, params);
+        setBackgroundColor(COLOR_DEEP_GREY);
     }
 
     private void setBackground(int number){
         switch (number){
         case 0:
-            this.setBackgroundColor(COLOR_GREY);
+            mNumberView.setBackgroundResource(R.drawable.item_grey_corner_background);
             break;
         case 2:
-            this.setBackgroundColor(COLOR_WHITE);
+            mNumberView.setBackgroundResource(R.drawable.item_white_corner_background);
             break;
         case 4:
-            this.setBackgroundColor(COLOR_LIGHT_YELLOW);
+            mNumberView.setBackgroundResource(R.drawable.item_light_yellow_corner_background);
             break;
         case 8:
-            this.setBackgroundColor(COLOR_DEEP_YELLOW);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_yellow_corner_background);
             break;
         case 16:
-            this.setBackgroundColor(COLOR_LIGHT_ORANGE);
+            mNumberView.setBackgroundResource(R.drawable.item_light_orange_corner_background);
             break;
         case 32:
-            this.setBackgroundColor(COLOR_DEEP_ORANGE);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_orange_corner_background);
             break;
         case 64:
-            this.setBackgroundColor(COLOR_LIGHT_RED);
+            mNumberView.setBackgroundResource(R.drawable.item_light_red_corner_background);
             break;
         case 128:
-            this.setBackgroundColor(COLOR_DEEP_RED);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_red_corner_background);
             break;
         case 256:
-            this.setBackgroundColor(COLOR_LIGHT_BLUE);
+            mNumberView.setBackgroundResource(R.drawable.item_light_blue_corner_background);
             break;
         case 512:
-            this.setBackgroundColor(COLOR_DEEP_BLUE);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_blue_corner_background);
             break;
         case 1024:
-            this.setBackgroundColor(COLOR_LIGHT_PURPLE);
+            mNumberView.setBackgroundResource(R.drawable.item_light_purple_corner_background);
             break;
         case 2048:
-            this.setBackgroundColor(COLOR_DEEP_PURPLE);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_purple_corner_background);
             break;
         case 4096:
-            this.setBackgroundColor(COLOR_DEEP_GREEN);
+            mNumberView.setBackgroundResource(R.drawable.item_deep_green_corner_background);
             break;
+        default:
+            mNumberView.setBackgroundResource(R.drawable.item_grey_corner_background);
         }
     }
+
 }
