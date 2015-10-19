@@ -1,11 +1,10 @@
-package com.nnero.game2048.view;
+package com.nnero.game2048.ui.view;
 
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.nnero.game2048.R;
-import com.nnero.game2048.util.LogUtil;
 
 /**
  * Author:NNERO

@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.config.ConfigActivity"/>
+        <activity android:name=".ui.result.ResultActivity"
+                android:theme="@style/Half_Translucent"/>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@
     <item name="deep_green" type="color">#ff00cc99</item>
 
     <item name="orange" type="color">#ffffcc66</item>
+    <item name="half_translucent" type="color">#80000000</item>
     <item name="button_normal_blue" type="color">#ff99ccff</item>
     <item name="button_pressed_blue" type="color">#ff6699ff</item>
 </resources>

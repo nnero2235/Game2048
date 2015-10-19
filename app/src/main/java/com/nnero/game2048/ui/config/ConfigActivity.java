@@ -60,6 +60,7 @@ public class ConfigActivity extends BaseActivity implements AdapterView.OnItemSe
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         App.goal = App.GOALS[mGoalSpinner.getSelectedItemPosition()];
         App.level = App.LEVELS[mLevelSpinner.getSelectedItemPosition()];
+        setResult(200);
     }
 
     @Override
