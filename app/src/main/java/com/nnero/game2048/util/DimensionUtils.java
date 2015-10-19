@@ -1,6 +1,10 @@
 package com.nnero.game2048.util;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
+import com.nnero.game2048.base.App;
 
 public class DimensionUtils {
 	/**
@@ -40,5 +44,19 @@ public class DimensionUtils {
     public static float sp2px(Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return spValue * fontScale + 0.5f;
+    }
+
+
+    /**
+     * 计算 itemsize 通过levels
+     * @param levels
+     * @return
+     */
+    public static int calculateItemSize(int levels){
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) App.getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        display.getMetrics(metrics);
+        return (metrics.widthPixels - DimensionUtils.dip2px(App.getContext(),10) * 2) / levels;
     }
 }

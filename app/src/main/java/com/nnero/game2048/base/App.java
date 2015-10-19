@@ -26,7 +26,9 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
-
+        SharedPreferences sp = getSharedPreferences();
+        App.goal = App.GOALS[sp.getInt(SPKeys.GOAL_POS,1)];
+        App.level = App.LEVELS[sp.getInt(SPKeys.LEVEL_POS,0)];
     }
 
     /**

@@ -12,7 +12,7 @@ import android.util.Log;
 public class LogUtil {
 
     private static boolean DEBUG = true;
-    private static String TAG = "game2048";
+    private static String TAG = "like";
 
     public static void d(String msg){
         if(DEBUG) {

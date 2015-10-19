@@ -45,15 +45,14 @@ public class GameItem extends FrameLayout {
     private void init(){
         initItem();
         initLayout();
+        setItem(mNumber);
     }
 
     private void initItem(){
         mNumberView = new TextView(getContext());
         mNumberView.setTextColor(COLOR_BLACK);
         mNumberView.setTextSize(20);
-        mNumberView.setText(mNumber == 0 ? "" : mNumber + "");
         mNumberView.setGravity(Gravity.CENTER);
-        setBackground(mNumber);
     }
 
     private void initLayout(){
@@ -107,6 +106,21 @@ public class GameItem extends FrameLayout {
         default:
             mNumberView.setBackgroundResource(R.drawable.item_grey_corner_background);
         }
+    }
+
+    //设置Item  也就是更新数据
+    public void setItem(int number){
+        mNumber = number;
+        mNumberView.setText(mNumber == 0 ? "" : mNumber + "");
+        setBackground(mNumber);
+    }
+
+    public void setNumber(int number){
+        this.mNumber = number;
+    }
+
+    public int getNumber(){
+        return this.mNumber;
     }
 
 }
