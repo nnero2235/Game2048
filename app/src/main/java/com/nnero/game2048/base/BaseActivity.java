@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import com.nnero.game2048.viewmodel.GameViewModel;
+
 /**
  * Author:NNERO
  * <p/>

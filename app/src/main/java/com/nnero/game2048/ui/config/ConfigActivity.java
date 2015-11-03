@@ -17,7 +17,7 @@ import com.nnero.game2048.util.SPKeys;
  * <p/>
  * TIME: 15/10/16 下午9:27
  * <p/>
- * DESCRIPTION:
+ * DESCRIPTION:配置activity
  */
 public class ConfigActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 

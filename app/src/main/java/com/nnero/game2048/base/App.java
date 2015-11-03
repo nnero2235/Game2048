@@ -3,8 +3,11 @@ package com.nnero.game2048.base;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.nnero.game2048.util.DimensionUtils;
 import com.nnero.game2048.util.LogUtil;
 import com.nnero.game2048.util.SPKeys;
+import com.nnero.game2048.viewmodel.GameViewModel;
 
 /**
  * Author:NNERO
@@ -17,6 +20,7 @@ public class App extends Application{
 
     public static int goal;
     public static int level;
+    public static int itemSize;
     private static Context instance;
 
     public static final int[] LEVELS = {4,5,6};
@@ -29,6 +33,8 @@ public class App extends Application{
         SharedPreferences sp = getSharedPreferences();
         App.goal = App.GOALS[sp.getInt(SPKeys.GOAL_POS,1)];
         App.level = App.LEVELS[sp.getInt(SPKeys.LEVEL_POS,0)];
+        App.itemSize = DimensionUtils.calculateItemSize(App.level);//通过screenwidth计算 size
+        GameViewModel.INSTANCE.initGameData();
     }
 
     /**

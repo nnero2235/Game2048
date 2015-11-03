@@ -11,6 +11,7 @@ import com.nnero.game2048.ui.config.ConfigActivity;
 import com.nnero.game2048.ui.result.ResultActivity;
 import com.nnero.game2048.util.SPKeys;
 import com.nnero.game2048.ui.view.GameView;
+import com.nnero.game2048.viewmodel.GameViewModel;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -23,7 +24,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mUndoView;
     private GameView mGameView;
     private SharedPreferences mSp;
-    private int mRecord;
 
     @Override
     protected void initView() {
@@ -39,47 +39,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mRestartView.setOnClickListener(this);
         mUndoView.setOnClickListener(this);
 
-        mRecordView.setText(mRecord + "");
         mGoalView.setText(App.goal+"");
         mPointView.setText("0");
 
-        mGameView.registGameOverListener(new GameView.OnGameOverListener() {
-            @Override
-            public void onSuccess() {
-                mSp.edit().putInt(SPKeys.RECORD, mRecord).apply();
-                Intent intent = new Intent(App.getContext(), ResultActivity.class);
-                intent.setAction(ResultActivity.ACTION_SUCCESS);
-                startActivityForResult(intent, 0);
-            }
 
-            @Override
-            public void onFailure() {
-                mSp.edit().putInt(SPKeys.RECORD, mRecord).apply();
+        //游戏状态
+        GameViewModel.INSTANCE.getGameState().subscribe(state -> {
+            switch (state) {
+            case GameViewModel.STATE_CONTINUE:
+                break;
+            case GameViewModel.STATE_OVER:
                 Intent intent = new Intent(App.getContext(), ResultActivity.class);
                 intent.setAction(ResultActivity.ACTION_FAILURE);
                 startActivityForResult(intent, 0);
+                break;
+            case GameViewModel.STATE_SUCCESS:
+                Intent intentSuccess = new Intent(App.getContext(), ResultActivity.class);
+                intentSuccess.setAction(ResultActivity.ACTION_SUCCESS);
+                startActivityForResult(intentSuccess, 0);
+                break;
             }
-        });
-
-        PointRecorder.getRecorder().init();
-        PointRecorder.getRecorder().registOnRecordListener(new PointRecorder.OnRecordListener() {
-            @Override
-            public void updateViews(int point, int points) {
-                mPointView.setText(points+"");
-                if(points > mRecord){
-                    mRecordView.setText(points+"");
-                    mRecord = points;
-                }
-            }
-        });
+        }, e -> {});
+        GameViewModel.INSTANCE.getTotalPoints().subscribe(points->{
+            mPointView.setText(points+"");
+        },e->{});
+        GameViewModel.INSTANCE.getRecordPoint().subscribe(recordPoint->{
+            mRecordView.setText(recordPoint+"");
+        },e->{});
     }
 
     @Override
     protected void initData() {
         mSp = App.getSharedPreferences();
-        App.goal = App.GOALS[mSp.getInt(SPKeys.GOAL_POS,1)];
-        App.level = App.LEVELS[mSp.getInt(SPKeys.LEVEL_POS,0)];
-        mRecord = mSp.getInt(SPKeys.RECORD, 0);
     }
 
     @Override

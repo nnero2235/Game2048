@@ -77,13 +77,24 @@
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
-    <com.nnero.game2048.ui.view.GameView
-        android:layout_marginTop="30dp"
-        android:id="@+id/main_gameview"
-        android:layout_weight="5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </com.nnero.game2048.ui.view.GameView>
+    <FrameLayout
+            android:layout_marginTop="30dp"
+            android:id="@+id/main_container"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <com.nnero.game2048.ui.view.GameView
+                android:id="@+id/main_gameview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        </com.nnero.game2048.ui.view.GameView>
+        <com.nnero.game2048.ui.view.AnimationLayer
+                android:id="@+id/main_animation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        </com.nnero.game2048.ui.view.AnimationLayer>
+    </FrameLayout>
+
     <LinearLayout
         android:layout_weight="1"
         android:orientation="horizontal"

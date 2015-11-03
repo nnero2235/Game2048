@@ -5,7 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.nnero.game2048.R;
+import com.nnero.game2048.base.App;
 import com.nnero.game2048.base.BaseActivity;
+import com.nnero.game2048.util.SPKeys;
+import com.nnero.game2048.viewmodel.GameViewModel;
 
 /**
  * Author:NNERO
@@ -38,6 +41,13 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
         } else {
             mIv.setImageResource(R.drawable.result_gameover);
         }
+
+        GameViewModel.INSTANCE.getRecordPoint().subscribe(recordPoint->{
+            int oldRecord = App.getSharedPreferences().getInt(SPKeys.RECORD,0);
+            if(recordPoint > oldRecord){
+                App.getSharedPreferences().edit().putInt(SPKeys.RECORD,recordPoint).apply();
+            }
+        },e->{});
     }
 
     @Override
