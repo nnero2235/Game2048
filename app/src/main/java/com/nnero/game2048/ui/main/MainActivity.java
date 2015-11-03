@@ -9,6 +9,7 @@ import com.nnero.game2048.base.App;
 import com.nnero.game2048.base.BaseActivity;
 import com.nnero.game2048.ui.config.ConfigActivity;
 import com.nnero.game2048.ui.result.ResultActivity;
+import com.nnero.game2048.util.LogUtil;
 import com.nnero.game2048.util.SPKeys;
 import com.nnero.game2048.ui.view.GameView;
 import com.nnero.game2048.viewmodel.GameViewModel;
@@ -23,7 +24,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mRestartView;
     private TextView mUndoView;
     private GameView mGameView;
-    private SharedPreferences mSp;
 
     @Override
     protected void initView() {
@@ -66,11 +66,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         GameViewModel.INSTANCE.getRecordPoint().subscribe(recordPoint->{
             mRecordView.setText(recordPoint+"");
         },e->{});
+        GameViewModel.INSTANCE.doAction(GameViewModel.ACTION_RANDOM);
+//        GameViewModel.INSTANCE.doAction(GameViewModel.ACTION_RANDOM);
     }
 
     @Override
     protected void initData() {
-        mSp = App.getSharedPreferences();
     }
 
     @Override

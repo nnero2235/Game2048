@@ -55,26 +55,30 @@ public class AnimationLayer extends FrameLayout{
 
     private void init(){
         animationItems = new LinkedList<>();
-
-        subs.add(AnimationViewModel.INSTANCE.getScalePoint().subscribe(point->{createScaleAnimation(point);}, e -> {
-        }));
-
+        subs.clear();
+        subs.add(AnimationViewModel.INSTANCE.getScalePoint().subscribe(point->{
+            createScaleAnimation(point);
+        }, e -> {}));
     }
 
-    public void createScaleAnimation(GameView.Point point){
+    private void createScaleAnimation(GameView.Point point){
         LogUtil.d("animation start");
         GameItem item = animationItems.remove(0);
 
         if(item == null){
+            LogUtil.d("null");
             item = new GameItem(getContext(),0);
             addView(item);
+        } else {
+            LogUtil.d("not null");
         }
+        LogUtil.d("qiguai");
         item.setVisibility(VISIBLE);
         item.setItem(point.number);
 
         LayoutParams params = new LayoutParams(App.itemSize,App.itemSize);
-        params.leftMargin = point.x * App.itemSize;
-        params.topMargin = point.y * App.itemSize;
+        params.leftMargin = point.y * App.itemSize;
+        params.topMargin = point.x * App.itemSize;
         item.setLayoutParams(params);
 
         ScaleAnimation scale = new ScaleAnimation(0.5f,1.0f,0.5f,1.0f,ScaleAnimation.RELATIVE_TO_SELF,0.5f,ScaleAnimation.RELATIVE_TO_SELF,0.5f);
@@ -82,7 +86,9 @@ public class AnimationLayer extends FrameLayout{
         final GameItem finalItem = item;
         scale.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onAnimationStart(Animation animation) {}
+            public void onAnimationStart(Animation animation) {
+                LogUtil.d("start");
+            }
 
             @Override
             public void onAnimationEnd(Animation animation) {
@@ -94,6 +100,7 @@ public class AnimationLayer extends FrameLayout{
             @Override
             public void onAnimationRepeat(Animation animation) {}
         });
-        item.startAnimation(scale);
+        item.setAnimation(scale);
+        scale.startNow();
     }
 }

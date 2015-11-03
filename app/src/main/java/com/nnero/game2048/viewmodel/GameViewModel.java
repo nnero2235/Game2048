@@ -235,6 +235,7 @@ public enum  GameViewModel {
         }
         int index = random.nextInt(mBlanks.size());
         mGameMatrix[mBlanks.get(index).x][mBlanks.get(index).y] = number;
+        LogUtil.d("random logic");
         AnimationViewModel.INSTANCE.startScaleAnimation(new GameView.Point(mBlanks.get(index).x,mBlanks.get(index).y,number));
     }
 

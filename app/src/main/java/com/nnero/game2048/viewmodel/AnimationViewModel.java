@@ -4,6 +4,7 @@ import com.nnero.game2048.ui.view.GameView;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Author: nnero
@@ -20,6 +21,11 @@ public enum  AnimationViewModel {
 
     private PublishSubject<Integer> mScaleStateSub = PublishSubject.create();
     private PublishSubject<GameView.Point> mScalePointSub = PublishSubject.create();
+
+    private CompositeSubscription subs = new CompositeSubscription();
+
+    private void init(){
+    }
 
     /**
      * 发送一个动画状态消息

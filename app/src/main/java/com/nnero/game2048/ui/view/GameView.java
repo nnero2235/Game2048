@@ -140,9 +140,6 @@ public class GameView extends GridLayout implements View.OnTouchListener{
         subs.add(AnimationViewModel.INSTANCE.getScalePoint().subscribe(point->{
             mGameMatrix[point.x][point.y].setItem(0);
         },e->{}));
-
-        GameViewModel.INSTANCE.doAction(GameViewModel.ACTION_RANDOM);
-        GameViewModel.INSTANCE.doAction(GameViewModel.ACTION_RANDOM);
     }
 
     //记录 坐标
